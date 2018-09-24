@@ -1,33 +1,20 @@
-"""
-Copyright 2018 Debasish Kanhar
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-"""
-
-__author__ = "Debasish Kanhar (https://github.com/debasishdebs)"
-__credits__ = ["Florian Hockman", "Jason Plurad", "Dave Brown", "Marko Rodriguez"]
-__license__ = "Apache-2.0"
-__version__ = "0.0.1"
-__email__ = ["d.kanhar@gmail.com", "dekanhar@in.ibm.com"]
+# Copyright 2018 JanusGraph Python Authors
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 
-try:
-    from gremlin_python.structure.io.graphsonV3d0 import GraphSONReader
-    from gremlin_python.structure.io.graphsonV3d0 import GraphSONUtil
-except ImportError:
-    from gremlin_python.structure.io.graphson import GraphSONReader
-    from gremlin_python.structure.io.graphson import GraphSONUtil
-
+from gremlin_python.structure.io.graphsonV3d0 import GraphSONReader
+from gremlin_python.structure.io.graphsonV3d0 import GraphSONUtil
 from ...serializer.RelationIdentifierDeserializer import RelationIdentifierDeserializer
 from ...serializer.GeoShapeDeserializer import GeoShapeDeserializer
 
@@ -48,7 +35,6 @@ class JanusGraphSONReader(object):
 
     def __init__(self):
         self.reader = None
-        pass
 
     def __register_default_deserializers(self):
         """
@@ -88,16 +74,18 @@ class JanusGraphSONReader(object):
         self.reader = GraphSONReader(self.deserializers)
         return self.reader
 
-    def register_deserializer(self, typeClass, serializer):
+    def register_deserializer(self, typeClass, deserializer):
         """
             This method is used to registering any additional JanusGraph de-serializers.
 
         Args:
-            typeClass (type): The identifier to be used with underlaying graph to register the De-serializer against.
+            typeClass (str): The identifier to be used with underlaying graph to register the De-serializer against.
             serializer: The De-serializer class.
 
         Returns:
 
         """
 
-        self.deserializers[typeClass] = serializer
+        objectIdentifier = GraphSONUtil.formatType(self.GRAPHSON_PREFIX, typeClass)
+
+        self.deserializers[objectIdentifier] = deserializer

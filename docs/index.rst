@@ -3,13 +3,29 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+
 Welcome to JanusGraph-Python docs's documentation!
-==================================================
+The documentation covers the following topics where we will learn how to connect a running instance
+of JanusGraph server and few basic usage of JanusGraph specific queries like querying for GeoShape and Text Predicates.
+We will also learn about adding Geoshape to dataset in JanusGraph.
 
-This documentation will cover the usage of following:
 
-   - `Installation <installation.html>`_
-   - `JanusGraph Text Predicates <text-predicates.html>`_
-   - `Geo Predicates <geo-predicates.html>`_
-   - `Geo Shapes <geo-shapes.html>`_
-   - How to contribute to extend the current library to implement other Geo Shapes and Geo Predicates
+.. toctree::
+   :maxdepth: 2
+
+   installation
+   connecting
+   text-predicates
+   geo-predicates
+   geo-shapes
+   modules
+   contributing
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
+

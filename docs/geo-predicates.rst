@@ -14,13 +14,15 @@ Available Geo Predicates
 
 The Geo Predicate provides the following 4 types of predicates for queries the data.
 
-    - geoIntersect
     - geoWithin_
-    - geoDisjoint
     - geoContains_
 
-While, in current release only geoContains and geoWithin is implemented, but geoWithin isn't yet tested.
-Contributions are invited for development of other Geo Predicates.
+While, in current release only geoContains and geoWithin is implemented.
+
+Contributions are invited for development of other following Geo Predicates.
+
+    - geoDisjoint
+    - geoIntersect
 
 ^^^^^^^^^^^^^^^
 geoContains
@@ -33,7 +35,7 @@ Hence, for example, since New Delhi is capital of India, the query
 ``GeoShape(India) contains GeoShape(New Delhi)`` holds true.
 
 For scope of example, we have added a point named arcadia with co-ordinates 7.58 21.50 and radius 5km (Circle).
-For reference, see the docs about `GeoShapes <geo-shapes.html>`_ (Note how latitude nad longitude are reversed).
+For reference, see the docs about `GeoShapes <geo-shapes.html>`_ (Note how latitude and longitude are reversed).
 
 .. code-block:: python
 
@@ -43,7 +45,8 @@ For reference, see the docs about `GeoShapes <geo-shapes.html>`_ (Note how latit
     arcadia = GeoShape.Circle(21.50, 7.58, 5)
     ==> CIRCLE(lat: 7.58, lon: 21.5, r: 5)
 
-    edgeAdded = g.V(birds).as_("to").V(hercules).addE("battled").property("time", 290).property("place", arcadia).to("to").next()
+    edgeAdded = g.V(birds).as_("to").V(hercules).addE("battled").property("time", 290).
+                property("place", arcadia).to("to").next()
     ==> e[63hf6j-3bs-9hx-36g][4312-battled->4120]
 
     shape = GeoShape.Circle(21.50, 7.58, 2)

@@ -1,10 +1,23 @@
-# Name: Debasish Kanhar
+# Copyright 2018 JanusGraph Python Authors
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 
 from pybuilder.core import use_plugin, init, Author, task, depends
 
 authors = [Author("Debasish Kanhar", "dekanhar@in.ibm.com")]
 description = "Python client drivers for JanusGraph"
+copyright = "Copyright 2018 JanusGraph Python Authors"
 license = "Apache License v2.0"
 
 name = "janusgraph_python"
@@ -15,21 +28,17 @@ version = "0.0.9"
 
 use_plugin("python.core")
 # the python unittest plugin allows running python's standard library unittests
-# use_plugin("python.unittest")
+use_plugin("python.unittest")
 # this plugin allows installing project dependencies with pip
 use_plugin("python.install_dependencies")
 # a plugin that measures unit test statement coverage
-# use_plugin("python.coverage")
-# use_plugin('pypi:pybuilder_pytest_coverage')
+use_plugin("python.coverage")
 # for packaging purposes since we'll build a tarball
 use_plugin("python.distutils")
-# For generating Pycharm project files
-use_plugin("python.pycharm")
-# For generating Docs from docstring using Spinx
+# For generating Docs from docstring using Sphinx
 use_plugin("python.sphinx")
 
-# default_task = ['clean', 'install_dependencies', 'publish', 'pycharm_generate']
-default_task = ['clean', 'install_dependencies', 'prepare', 'compile_sources', 'pycharm_generate']
+default_task = ['clean', 'install_dependencies', 'prepare', 'compile_sources', 'package', 'publish']
 
 # This is an initializer, a block of logic that runs before the project is built.
 @init
@@ -52,4 +61,3 @@ def initialize(project):
 
     project.set_property("dir_dist", "target/dist/" + project.name)
     project.depends_on("gremlinpython", "=={}".format(tinkerpop_version))
-    pass

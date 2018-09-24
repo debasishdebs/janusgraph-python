@@ -1,11 +1,21 @@
-# Name: Debasish Kanhar
+# Copyright 2018 JanusGraph Python Authors
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 
 import unittest
 import json
-try:
-    from gremlin_python.structure.io.graphsonV3d0 import GraphSONUtil
-except ImportError:
-    from gremlin_python.structure.io.graphson import GraphSONUtil
+from gremlin_python.structure.io.graphsonV3d0 import GraphSONUtil
 from janusgraph_python.structure.io.GraphsonReader import JanusGraphSONReader
 
 
@@ -59,7 +69,6 @@ class Mock(object):
 class TestGraphsonReader(unittest.TestCase):
     GRAPHSON_PREFIX = "janusgraph"
     GRAPHSON_BASE_TYPE = "MOCK"
-    MOCK_GRAPHSON_TYPE = GraphSONUtil.formatType(GRAPHSON_PREFIX, GRAPHSON_BASE_TYPE)
 
     def setUp(self):
         self.readerClass = JanusGraphSONReader()
@@ -70,7 +79,7 @@ class TestGraphsonReader(unittest.TestCase):
     def test_mock_deserializer(self):
         deserializer = MockDeserializer
 
-        self.readerClass.register_deserializer(self.MOCK_GRAPHSON_TYPE, deserializer)
+        self.readerClass.register_deserializer(self.GRAPHSON_BASE_TYPE, deserializer)
         self.reader = self.readerClass.build()
 
         mockGSON = "{\"@type\":\"janusgraph:MOCK\",\"@value\":{\"a\": 1}}"

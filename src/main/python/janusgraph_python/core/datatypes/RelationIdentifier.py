@@ -1,24 +1,16 @@
-"""
-Copyright 2018 Debasish Kanhar
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-"""
-
-__author__ = "Debasish Kanhar (https://github.com/debasishdebs)"
-__credits__ = ["Florian Hockman", "Jason Plurad", "Dave Brown", "Marko Rodriguez"]
-__license__ = "Apache-2.0"
-__version__ = "0.0.1"
-__email__ = ["d.kanhar@gmail.com", "dekanhar@in.ibm.com"]
+# Copyright 2018 JanusGraph Python Authors
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 
 class RelationIdentifier(object):
@@ -41,29 +33,17 @@ class RelationIdentifier(object):
 
         """
 
-        if type(other) is str:
-            if other == self.toString():
-                return True
+        if type(other) is str and other == self.toString():
+            return True
 
         elif type(other) is RelationIdentifier:
-            if self.relationID == other.relationID:
-                return True
-            else:
-                return False
+            return self.relationID == other.relationID
 
         elif other is None:
             return False
 
         else:
             return False
-        #
-        # if other is None:
-        #     return False
-        # else:
-        #     if self.relationID == other.relationID:
-        #         return True
-        #     else:
-        #         return False
 
     def __ne__(self, other):
         return not self.__eq__(other)

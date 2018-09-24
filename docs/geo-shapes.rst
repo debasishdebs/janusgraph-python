@@ -11,25 +11,21 @@ be queried using Geo Predicates from `docs
 Available Geo Shapes
 ----------------------------
 
-While JanusGraph's JVM based clients provides following shapes:
+The current library has only following shapes implemented:
 
     - POINT_
-    - BOX
     - CIRCLE_
+
+While JanusGraph's JVM based clients provides following shapes,
+Contributions are invited to implement the following shapes:
+
+    - BOX
     - LINE
     - POLYGON
     - MULTIPOINT
     - MULTILINESTRING
     - MULTIPOLYGON
     - GEOMETRYCOLLECTION
-
-The current library has only following shapes implemented:
-
-    - POINT_
-    - CIRCLE_
-
-Contributions are invited for development of other Geo Predicates.
-
 
 ^^^^^^^^^^^^^^^
 POINT

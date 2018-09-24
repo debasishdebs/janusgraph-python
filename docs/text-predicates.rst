@@ -15,7 +15,8 @@ Available Text Predicates
 ----------------------------
 
 The Text Predicates are broadly divided into 2 categories as:
-    - Text search predicates which match against the individual words inside a text string after it has been tokenized. These predicates are not case sensitive.
+    - Text search predicates which match against the individual words inside a text string after it has been tokenized.
+        These predicates are not case sensitive.
 
         - TextContains_
         - TextContainsFuzzy_
@@ -28,13 +29,15 @@ The Text Predicates are broadly divided into 2 categories as:
         - TextPrefix_
         - TextRegex_
 
+.. note::
+    All the bellow examples are based on Graph of the Gods graph which comes pre-packaged with JanusGraph
+
 ^^^^^^^^^^^^^^^
 TextContains
 ^^^^^^^^^^^^^^^
 
 This Predicate is part of *Text* package.
-TextContains is used to query for partial matches in values of properties. 
-The following example is based on GodsOfGraph which comes pre-packaged with JanusGraph.
+TextContains is used to query for partial matches in values of properties.
 The query is to find all edges where ``reason`` contains ``breezes``
 
 
@@ -61,7 +64,6 @@ TextContainsFuzzy
 
 This Predicate is part of *Text* package.
 TextContainsFuzzy is used to query for partial matches with Fuzzy logic in values of properties.
-The following example is based on GodsOfGraph which comes pre-packaged with JanusGraph.
 We know there is a vertex with *Hercules* value on property `name`. We query all vertices with value as *Herculies*
 Similarly, we use in Conjugation with multiple other attributes to query edge as in above example.
 
@@ -92,17 +94,18 @@ TextContainsPrefix
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This Predicate is part of *Text* package.
-TextContainsPrefix is used to query for where the value (if sentence, it is segmented, & any word in segment is considered)
+TextContainsPrefix is used to query for where the value
+(if sentence, it is segmented, & any word in segment is considered)
 contains the string queries in prefix
-The following example is based on GodsOfGraph which comes pre-packaged with JanusGraph and shows the difference
-between TextContains and TextContainsPrefix and TextPrefix.
+The difference between TextContains and TextContainsPrefix and TextPrefix can be seen in example bellow.
 
 
 .. code-block:: python
 
     from janusgraph_python.core.attribute.TextPredicate.Text import Text
 
-    edges = g.E().has("reason", Text.textContainsFuzzy("breezs")).has("reason", Text.textContains("loves")).valueMap().toList()
+    edges = g.E().has("reason", Text.textContainsFuzzy("breezs")).has("reason", Text.textContains("loves")).
+            valueMap().toList()
     print(edges)
 
     ==> [{'reason': 'loves fresh breezes'}]
@@ -129,7 +132,6 @@ TextContainsRegex
 
 This Predicate is part of *Text* package.
 TextContainsRegex matches with each individual words in string, according to regex provided.
-The following example is based on GodsOfGraph which comes pre-packaged with JanusGraph.
 
 
 .. code-block:: python
@@ -148,8 +150,7 @@ TextFuzzy
 
 This Predicate is part of *Text* package.
 TextFuzzy is used to query for complete matches with Fuzzy logic in values of properties.
-The following example is based on GodsOfGraph which comes pre-packaged with JanusGraph and shows the difference
-between TextContainsFuzzy and TextFuzzy.
+The difference between TextContainsFuzzy and TextFuzzy is seen in example bellow.
 
 
 .. code-block:: python
@@ -172,9 +173,9 @@ TextPrefix
 ^^^^^^^^^^^^^^^
 
 This Predicate is part of *Text* package.
-TextPrefix returns the objects, where the string being queries is at the beginning and at prefix of the property's value.
-The following example is based on GodsOfGraph which comes pre-packaged with JanusGraph and shows the difference
-between TextContainsPrefix and TextPrefix.
+TextPrefix returns the objects, where the string being queries is at the beginning and at prefix of the
+property's value.
+The difference between TextContainsPrefix and TextPrefix is shows in example bellow.
 
 
 .. code-block:: python
@@ -203,7 +204,6 @@ TextRegex
 
 This Predicate is part of *Text* package.
 TextRegex matches the whole string, according to regex provided.
-The following example is based on GodsOfGraph which comes pre-packaged with JanusGraph.
 
 
 .. code-block:: python
